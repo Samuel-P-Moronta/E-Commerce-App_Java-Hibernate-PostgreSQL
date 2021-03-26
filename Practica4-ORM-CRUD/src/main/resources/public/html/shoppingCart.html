@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body class="sb-nav-fixed">
+
+<!--================ Start Header Menu Area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="/products">PRODUCTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/products/salesHistory">SALES HISTORY</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/products/admin">MANAGE PRODUCTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/cart">SHOPPING CART</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!--================ End Header Menu Area =================-->
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>CARRITO DE COMPRAS</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+<section class="contenido wrapper">
+    <div class="container">
+        <div class="table-wrapper">
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2 th:text="${titulo}"></h2>
+                    </div>
+
+                </div>
+            </div>
+            <table class="table table-striped table-hover" id="table" width="100%" cellspacing="0">
+
+                <thead>
+                <tr>
+                    <th> ID</th>
+                    <th>PRODUCTO</th>
+                    <th>PRECIO (RD$)</th>
+                    <th>CANTIDAD</th>
+                    <th>TOTAL (RD$)</th>
+                    <th>ACCION</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>TOTAL RD$:</th>
+                    <th th:text="${total}"></th>
+                    <th></th>
+                </tr>
+                </tfoot>
+                <tbody>
+                <tr th:each="ProductoCarrito : ${listProductInCart}">
+                    <!--Sirve para darle una mejor vista-->
+                    <td th:text="${ProductoCarrito.idIteam}">
+                    <td th:text="${ProductoCarrito.productoVenta.nombre}"></td>
+                    <td th:text="${ProductoCarrito.productoVenta.precio}"></td>
+                    <td th:text="${ProductoCarrito.cantProducto}"></td>
+                    </td>
+                    <td th:text="${ProductoCarrito.cant_Total}"></td>
+                    <td>
+                        <!-- ADD Modal HTML --> <!--Ventana para agregar un producuto-->
+                        </a><a id="borrar" href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i
+                            class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</section>
+<!--Agregando codigo para procesar y limpiar carrito-->
+<div class="ui-group-buttons" align="center">
+    <a href="#limpiarCarro" data-toggle="modal" name="limpiar" id="limpiar" class="btn btn-default"
+       role="button"><span class="glyphicon glyphicon-trash"></span> Limpiar &nbsp; </a>
+
+    <a href="#agregarCliente" data-toggle="modal" name="procesar" id="procesar" class="btn btn-success"
+       role="button"><span class="glyphicon glyphicon-ok"></span> Procesar</a>
+</div>
+<br/>
+<br/>
+<!-- Delete Modal HTML -->
+<div id="deleteEmployeeModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="f2" id="f2" method="post" action="/cart/deleteProductToCart">
+                <div class="modal-header">
+                    <h4 class="modal-title">Borrar product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete these Records?</p>
+                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" name="Delete" class="btn btn-danger" value="Delete">
+                    <input type="hidden" id="idBorrar" name="idBorrar" class="btn btn-danger" value="">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Agregar cliente Modal HTML --> <!--agregar Product-->
+<div id="agregarCliente" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Agregar nombre de cliente a travez de metodo post-->
+            <form name="f1" id="f1" method="post" action="cart/addClient">
+                <div class="modal-header">
+                    <h4 class="modal-title">Agregar Cliente</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" required id="nombre" name="nombre">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" class="btn btn-info" value="Save">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Limpiar carrito Modal HTML -->
+<div id="limpiarCarro" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="f3" id="f3" method="post" action="/limpiarCarro">
+                <div class="modal-header">
+                    <h4 class="modal-title">Borrar product</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete these Records?</p>
+                    <p class="text-warning"><small>This action cannot be undone.</small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                    <input type="submit" name="Delete" class="btn btn-danger" value="Delete">
+                    <input type="hidden" id="idBorrar" name="idBorrar" class="btn btn-danger" value="">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--================ Start footer Area  =================-->
+
+<div class="footer-bottom">
+    <div class="container">
+        <div class="row d-flex">
+            <p class="col-lg-12 footer-text text-center">
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+                <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+    </div>
+</div>
+</footer>
+<!--================ End footer Area  =================-->
+<!--Agregar nombre de  usuario para procesar compra-->
+
+</body>
+<script>
+    $(document).ready(function ($) {
+        var array = [];
+        var count_click = 0;
+        $('#table tbody').on('click', '#ok', function () {
+            count_click_add();
+            var curRow = $(this).closest('tr');
+
+            var col1 = curRow.find('td:eq(1)').text();
+            var col2 = curRow.find('td:eq(2)').text();
+            console.log(col1);
+            array.push(col1)
+            array.push(col2)
+            console.log("Con array");
+
+            document.getElementById('cont1').innerHTML = col1;
+            var modal = ''
+            modal += '<form action="/update" method="POST">'
+            modal += 'Carrito: ' + count_click
+            modal += '<input type="hidden"  id="defaultForm-email" class="form-control validate" value="' + col1 + '" name="tel">'
+            modal += '</form>'
+            $(document).find('.modal_form').html(modal);
+
+
+        });
+
+        $('#table tbody').on('click', '#borrar', function () {
+
+            var curRow = $(this).closest('tr');
+            var col0 = curRow.find('td:eq(0)').text();
+            document.f2.idBorrar.value = col0;
+        });
+
+        function count_click_add() {
+            count_click += 1;
+        }
+    });
+</script>
+</html>

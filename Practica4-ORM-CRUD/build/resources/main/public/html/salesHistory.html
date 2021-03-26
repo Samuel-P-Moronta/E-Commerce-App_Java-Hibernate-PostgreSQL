@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo}"></title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="icon" href="img/Fevicon.png" type="image/png">
+    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="../js/principal.js"></script>
+    <!--APlicando estilos-->
+    <link rel="stylesheet" href="css/styleAddProduct.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+<!--================ Start Header Menu Area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="/products">PRODUCTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="zonaAdmin/lista-Venta">SALES HISTORY</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/cart">SHOPPING CART</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <h1 th:text="${usuario}"></h1>
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h2>Lista de productos </h2>
+                </div>
+            </div>
+        </div>
+        <table class="table table-bordered" th:each=" VentasProductos  : ${lista}" >
+            <thead class="table-title">
+            <tr>
+                <th class="align-middle" scope="row" colspan="2" th:text="'Cliente:' + '&nbsp;'+${VentasProductos.nombreCliente}"></th>
+                <th class="align-middle" scope="row" colspan="2" th:text="'Fecha:'+ '&nbsp;'+ ${VentasProductos.fechaCompra}" ></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tbody>
+            <th class="align-middle"; scope="col">Nombre del Producto</th>
+            <th class="align-middle"; scope="col">Precio ($RD)</th>
+            <th class="align-middle"; scope="col">Cantidad</th>
+            <th class="align-middle"; scope="col">Total ($RD)</th>
+
+            <tr th:each=" p : ${VentasProductos.listaProducto}"  >
+                <!--Sirve para darle una mejor vista-->
+                <td th:text="${p.productoVenta.nombre}"></td>
+
+                <td th:text="${p.productoVenta.precio}"></td>
+                <td th:text="${p.cantProducto}"></td>
+                <td th:text="${p.cant_Total}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+</body>
+<script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="vendors/skrollr.min.js"></script>
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="vendors/nice-select/jquery.nice-select.min.js"></script>
+<script src="vendors/jquery.ajaxchimp.min.js"></script>
+<script src="vendors/mail-script.js"></script>
+<script src="js/main.js"></script>
+
+</html>

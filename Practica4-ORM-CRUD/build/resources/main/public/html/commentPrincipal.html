@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="icon" href="img/Fevicon.png" type="image/png">
+    <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+    <link rel="stylesheet" href="vendors/linericon/style.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
+    <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+    <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/main.css">
+
+</head>
+<body>
+<!--================ Start Header Menu Area =================-->
+<header class="header_area">
+    <div class="main_menu">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="/products">PRODUCTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/products/salesHistory">SALES HISTORY</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/products/admin">MANAGE PRODUCTS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/cart">SHOPPING CART</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</header>
+<!-- ================ start banner area ================= -->
+<section class="blog-banner-area" id="category">
+    <div class="container h-100">
+        <div class="blog-banner">
+            <div class="text-center">
+                <h1>Commnets by our customer</h1>
+                <nav aria-label="breadcrumb" class="banner-breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">Comments</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ================ end banner area ================= -->
+<!--================ End Header Menu Area =================-->
+<section class="cart_area">
+    <div class="container">
+        <div class="cart_inner">
+
+        <div class="row ">
+            <div class="col-sm-4">
+                <div class="row">
+                    <h2>
+                        <span>
+                            <b>Fotos</b>
+                        </span>
+                    </h2>
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+                        <!-- Wrapper for carousel items -->
+                        <div class="carousel-inner">
+                            <div class="row">
+                                <div th:class="${cont.first} ? 'carousel-item active' : 'carousel-item'"
+                                     th:each="foto, cont : ${fotoList}">
+                                    <div class="img-box">
+                                        <img th:src="@{'data:' + ${foto.mimeType} + '; base64,' + ${foto.fotoBase64}}"
+                                             width="256" height="200">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Carousel controls -->
+                        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+                            <i class="fa fa-chevron-left"></i>
+                        </a>
+                        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+                            <i class="fa fa-chevron-right"></i>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <h3>Comentarios: </h3>
+                <div class="list-group">
+
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <form action="/agregarComentario" method="post">
+                                <div class="form-group">
+                                    <label for="inputMessage">Agregar Comentario:</label>
+                                    <textarea class="form-control" id="inputMessage" name="inputMessage" rows="5"
+                                              required></textarea>
+                                </div>
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                                <input type="hidden" name="id" id="id" th:value="${id}">
+                            </form>
+                        <li class="list-group-item">
+                            <a>
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">Comentarios Anteriores: </h5>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item" th:each="Comentario : ${listaComentario}">
+                            <a>
+                                <p class="mb-1" th:text="${Comentario.fecha}">
+                                </p>
+                                <p class="mb-1" th:text="${Comentario.comentario}">
+                                </p>
+                            </a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</section>
+<!--================ Start footer Area  =================-->
+<footer>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row d-flex">
+                <p class="col-lg-12 footer-text text-center">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by
+                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--================ End footer Area  =================-->
+<script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+<script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="vendors/skrollr.min.js"></script>
+<script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+<script src="vendors/nice-select/jquery.nice-select.min.js"></script>
+<script src="vendors/jquery.ajaxchimp.min.js"></script>
+<script src="vendors/mail-script.js"></script>
+<script src="js/main.js"></script>
+<script src="/JS/myscript.js"></script>
+</body>
+</html>
