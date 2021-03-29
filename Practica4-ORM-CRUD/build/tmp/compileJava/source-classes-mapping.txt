@@ -2,39 +2,39 @@ ormCRUD/encapsulacion/Invoice.java
  ormCRUD.encapsulacion.Invoice
 ormCRUD/encapsulacion/Comment.java
  ormCRUD.encapsulacion.Comment
-ormCRUD/services/ServicioUsuario.java
- ormCRUD.services.ServicioUsuario
+ormCRUD/encapsulacion/ProductoComprado.java
+ ormCRUD.encapsulacion.ProductoComprado
 ormCRUD/encapsulacion/Product.java
  ormCRUD.encapsulacion.Product
 ormCRUD/util/ControladorBase.java
  ormCRUD.util.ControladorBase
-ormCRUD/services/ServicioComentario.java
- ormCRUD.services.ServicioComentario
-ormCRUD/services/ServicioProducto.java
- ormCRUD.services.ServicioProducto
+ormCRUD/encapsulacion/Controller.java
+ ormCRUD.encapsulacion.Controller
+ormCRUD/services/ConexionBD.java
+ ormCRUD.services.ConexionBD
 ormCRUD/encapsulacion/CarroCompra.java
  ormCRUD.encapsulacion.CarroCompra
-ormCRUD/services/ServicioVenta.java
- ormCRUD.services.ServicioVenta
+ormCRUD/controladores/ExcepcionesControlador.java
+ ormCRUD.controladores.ExcepcionesControlador
 ormCRUD/Main.java
  ormCRUD.Main
 ormCRUD/controladores/MainController.java
  ormCRUD.controladores.MainController
 ormCRUD/controladores/ControladorPlantilla.java
  ormCRUD.controladores.ControladorPlantilla
-ormCRUD/services/ManejadorBD.java
- ormCRUD.services.ManejadorBD
+ormCRUD/encapsulacion/Foto.java
+ ormCRUD.encapsulacion.Foto
 ormCRUD/encapsulacion/User.java
  ormCRUD.encapsulacion.User
 ormCRUD/encapsulacion/IteamVenta.java
  ormCRUD.encapsulacion.IteamVenta
-ormCRUD/encapsulacion/Foto.java
- ormCRUD.encapsulacion.Foto
-ormCRUD/encapsulacion/ProductoComprado.java
- ormCRUD.encapsulacion.ProductoComprado
-ormCRUD/controladores/ExcepcionesControlador.java
- ormCRUD.controladores.ExcepcionesControlador
-ormCRUD/services/ConexionBD.java
- ormCRUD.services.ConexionBD
-ormCRUD/encapsulacion/Controller.java
- ormCRUD.encapsulacion.Controller
+ormCRUD/services/ServicioComentario.java
+ ormCRUD.services.ServicioComentario
+ormCRUD/services/ServicioProducto.java
+ ormCRUD.services.ServicioProducto
+ormCRUD/services/ServicioVenta.java
+ ormCRUD.services.ServicioVenta
+ormCRUD/services/ServicioUsuario.java
+ ormCRUD.services.ServicioUsuario
+ormCRUD/services/ManejadorBD.java
+ ormCRUD.services.ManejadorBD

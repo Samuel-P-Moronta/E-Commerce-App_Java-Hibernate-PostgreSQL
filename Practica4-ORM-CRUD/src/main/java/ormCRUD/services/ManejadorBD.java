@@ -160,9 +160,6 @@ public class ManejadorBD<T> {
         properties.put("javax.persistence.jdbc.url", jdbcUrl );
         properties.put("javax.persistence.jdbc.user", userName );
         properties.put("javax.persistence.jdbc.password", password );
-        //
         return Persistence.createEntityManagerFactory("Heroku", properties);
     }
-
-
 }

@@ -14,7 +14,7 @@ public class Main {
         //Creando la instancia del servidor.
         Javalin app = Javalin.create(config ->{
             config.addStaticFiles("/public"); //desde la carpeta de resources
-        }).start(7000);
+        }).start(getHerokuAssignedPort());
         new ControladorPlantilla(app);
         new MainController(app).aplicarRutas();
         ConexionBD.getInstance().InciarBD();
@@ -22,6 +22,13 @@ public class Main {
     }
     public static String getModoConexion() {
         return modoConexion;
+    }
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 7000;
     }
 
 }

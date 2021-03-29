@@ -28,6 +28,8 @@ dependencies {
     compile "org.jasypt:jasypt:1.9.3"
     // https://mvnrepository.com/artifact/org.hibernate/hibernate-gradle-plugin
     implementation group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.4.29.Final'
+    // https://mvnrepository.com/artifact/org.postgresql/postgresql
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
 }
 //Agregando UTF 8 para las plantillas
 compileJava.options.encoding = 'UTF-8'
