@@ -10,3 +10,6 @@ servicios – PaaS.
 • Utilizar la plataforma de Heroku.
 
 • Utilizar PostgreSQL como gestor de base de datos.
+
+URL PROYECTO HEROKU
+https://whispering-reef-20175.herokuapp.com/products
